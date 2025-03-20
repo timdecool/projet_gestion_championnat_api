@@ -65,4 +65,12 @@ public class Team {
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
+
+    public List<Championship> getChampionships() {
+        return championships;
+    }
+
+    public void setChampionships(List<Championship> championships) {
+        this.championships = championships;
+    }
 }
