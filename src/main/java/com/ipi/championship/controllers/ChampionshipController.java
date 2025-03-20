@@ -11,7 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/championship")
+@RequestMapping("/api/championships")
 public class ChampionshipController {
 
     ChampionshipRepository championshipRepository;
@@ -59,6 +59,4 @@ public class ChampionshipController {
         }
         championshipRepository.delete(championship);
     }
-
-
 }

@@ -45,10 +45,20 @@ public class Championship {
 
     public Championship() {}
 
-    public Championship(String name, LocalDate startDate, LocalDate endDate, int wonPoint, int lostPoint, int drawPoint) {
+    public Championship(String name, LocalDate startDate, LocalDate endDate) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public Championship(String name, LocalDate startDate, LocalDate endDate, int wonPoint, int lostPoint, int drawPoint) {
+        this(name, startDate, endDate);
+        this.wonPoint = wonPoint;
+        this.lostPoint = lostPoint;
+        this.drawPoint = drawPoint;
+    }
+
+    public Championship(int wonPoint, int lostPoint, int drawPoint) {
         this.wonPoint = wonPoint;
         this.lostPoint = lostPoint;
         this.drawPoint = drawPoint;
@@ -108,5 +118,21 @@ public class Championship {
 
     public void setDrawPoint(int drawPoint) {
         this.drawPoint = drawPoint;
+    }
+
+    public List<Day> getDays() {
+        return days;
+    }
+
+    public void setDays(List<Day> days) {
+        this.days = days;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
     }
 }
