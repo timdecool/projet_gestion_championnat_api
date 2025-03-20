@@ -24,14 +24,14 @@ public class TeamController {
         return teamRepository.findAll();
     }
 
-    @GetMapping("/championship/{id}")
-    public List<Team> getTeamsByChampionship(@PathVariable(name="id", required=false) Championship championship) {
-        if(championship == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Championship not found");
-        }
-
-        return teamRepository.findAllByChampionship(championship);
-    }
+//    @GetMapping("/championship/{id}")
+//    public List<Team> getTeamsByChampionship(@PathVariable(name="id", required=false) Championship championship) {
+//        if(championship == null) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Championship not found");
+//        }
+//
+//        return teamRepository.findAllByChampionship(championship);
+//    }
 
     @GetMapping("/{id}")
     public Team getTeamById(@PathVariable(name="id", required=true) Team team) {

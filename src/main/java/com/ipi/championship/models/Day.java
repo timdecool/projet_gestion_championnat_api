@@ -1,7 +1,10 @@
 package com.ipi.championship.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Day {
@@ -10,9 +13,11 @@ public class Day {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "number is missing")
     private String number;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private Championship championship;
 
     public Day(String number, Championship championship) {

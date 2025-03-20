@@ -1,6 +1,7 @@
 package com.ipi.championship.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -34,8 +35,10 @@ public class Championship {
     private int lostPoint;
     private int drawPoint;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "championship", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Day> days;
+
 
     @ManyToMany(
             fetch=FetchType.LAZY,

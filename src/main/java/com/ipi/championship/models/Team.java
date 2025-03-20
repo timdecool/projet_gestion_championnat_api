@@ -36,11 +36,16 @@ public class Team {
     private List<Championship> championships;
 
     public Team(String name) {
-        this.name = name;
         this.creationDate = LocalDate.now();
+        this.name = name;
     }
 
-    public Team() {}
+    public Team(String name, LocalDate creationDate) {
+        this.creationDate = creationDate;
+        this.name = name;
+    }
+    public Team() {
+    }
 
     public Long getId() {
         return id;
