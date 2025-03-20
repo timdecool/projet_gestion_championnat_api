@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 public class Day {
 
@@ -19,6 +21,9 @@ public class Day {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
     private Championship championship;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Game> games;
 
     public Day(String number, Championship championship) {
         this.number = number;
@@ -49,5 +54,13 @@ public class Day {
 
     public void setChampionship(Championship championship) {
         this.championship = championship;
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
     }
 }
