@@ -1,15 +1,20 @@
 package com.ipi.championship.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Fetch;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Team {
 
     @Id
@@ -34,6 +39,9 @@ public class Team {
             mappedBy="teams"
     )
     private List<Championship> championships;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Game> games;
 
     public Team(String name) {
         this.creationDate = LocalDate.now();
@@ -77,5 +85,14 @@ public class Team {
 
     public void setChampionships(List<Championship> championships) {
         this.championships = championships;
+    }
+
+    public void addChampionship(Championship championship) {
+        this.championships.add(championship);
+        championship.getTeams().add(this);
+    }
+
+    public void removeChampionship(Championship championship) {
+        this.championships.remove(championship);
     }
 }

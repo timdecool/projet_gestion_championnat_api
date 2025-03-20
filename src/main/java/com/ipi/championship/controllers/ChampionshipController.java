@@ -47,7 +47,11 @@ public class ChampionshipController {
         if(championshipToUpdate == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Championship not found");
         }
+
         championship.setId(championshipToUpdate.getId());
+        championship.setDays(championshipToUpdate.getDays());
+        championship.setTeams(championshipToUpdate.getTeams());
+
         Championship savedChampionship = championshipRepository.save(championship);
         return new ResponseEntity<>(savedChampionship, HttpStatus.OK);
     }
@@ -57,6 +61,7 @@ public class ChampionshipController {
         if(championship == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Championship not found");
         }
+        championship.getTeams().clear();
         championshipRepository.delete(championship);
     }
 }

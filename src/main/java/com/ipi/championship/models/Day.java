@@ -22,7 +22,7 @@ public class Day {
     @JsonBackReference
     private Championship championship;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "day")
     private List<Game> games;
 
     public Day(String number, Championship championship) {
