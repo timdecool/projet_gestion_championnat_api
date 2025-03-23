@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/teams")
@@ -25,7 +26,7 @@ public class TeamController {
     }
 
     @GetMapping("/championship/{id}")
-    public List<Team> getTeamsByChampionship(@PathVariable(name="id", required=false) Championship championship) {
+    public Set<Team> getTeamsByChampionship(@PathVariable(name="id", required=false) Championship championship) {
         if(championship == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Championship not found");
         }

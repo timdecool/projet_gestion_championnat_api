@@ -11,9 +11,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Championship {
 
     @Id
@@ -42,12 +42,11 @@ public class Championship {
     @JsonManagedReference
     private List<Day> days;
 
-
     @ManyToMany(
             fetch=FetchType.LAZY,
             cascade = { CascadeType.PERSIST, CascadeType.MERGE }
     )
-    private List<Team> teams;
+    private Set<Team> teams;
 
     public Championship() {}
 
@@ -134,11 +133,11 @@ public class Championship {
         this.days = days;
     }
 
-    public List<Team> getTeams() {
+    public Set<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(List<Team> teams) {
+    public void setTeams(Set<Team> teams) {
         this.teams = teams;
     }
 }

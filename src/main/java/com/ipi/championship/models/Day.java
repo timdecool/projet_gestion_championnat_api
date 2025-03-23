@@ -1,8 +1,7 @@
 package com.ipi.championship.models;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -23,6 +22,7 @@ public class Day {
     private Championship championship;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "day")
+    @JsonManagedReference
     private List<Game> games;
 
     public Day(String number, Championship championship) {

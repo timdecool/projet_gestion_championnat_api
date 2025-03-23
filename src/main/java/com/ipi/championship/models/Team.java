@@ -1,20 +1,16 @@
 package com.ipi.championship.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.annotations.Fetch;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Team {
 
     @Id
@@ -38,10 +34,8 @@ public class Team {
             },
             mappedBy="teams"
     )
+    @JsonIgnore
     private List<Championship> championships;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Game> games;
 
     public Team(String name) {
         this.creationDate = LocalDate.now();
