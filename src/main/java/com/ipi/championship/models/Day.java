@@ -21,7 +21,7 @@ public class Day {
     @JsonBackReference
     private Championship championship;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "day")
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "day")
     @JsonManagedReference
     private List<Game> games;
 
